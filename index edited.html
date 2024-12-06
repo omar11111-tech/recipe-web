@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Recipe Website</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1 class="logo">Delicious Recipe By Omar Tayeb</h1>
+            <nav>
+                <div class="menu-icon">&#9776;</div>
+                <ul class="nav-list">
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Recipes</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-section">
+            <h2>Welcome to my recipe collection!</h2>
+            <p>Search mouth-watering recipes to satisfy your cravings.</p>
+            <form action="#" class="search-box">
+                <input type="text" placeholder="Search recipe" id="searchInput" autocomplete="off">
+                <button type="submit">Search</button>
+
+                <!-- Suggestions List (shown when user interacts with the input) -->
+                <div class="suggestions" id="suggestions">
+                    <div class="suggestion-item">Brownie Cookies</div>
+                    <div class="suggestion-item">Brookies</div>
+                    <div class="suggestion-item">Cup Cookies</div>
+                    <div class="suggestion-item">Chocolate Chip Cookie</div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Recipe Section -->
+    <section class="recipes">
+        <h1>Featured Recipes</h1>
+        <div class="recipe-section">
+            <div class="recipe-card">
+                <img src="o.jfif" alt="Brownie Cookies">
+                <h2>Brownie Cookies</h2>
+                <p>Click "View Recipe" to make it!</p>
+                <button class="view-recipe-btn" data-recipe="Brownie Cookies">View Recipe</button>
+            </div>
+            <div class="recipe-card">
+                <img src="brokies.jpeg" alt="Brookies">
+                <h2>Brookies</h2>
+                <p>Click "View Recipe" to make it!</p>
+                <button class="view-recipe-btn" data-recipe="Brookies">View Recipe</button>
+            </div>
+            <div class="recipe-card">
+                <img src="OIP.jfif" alt="Cup Cookies">
+                <h2>Cup Cookies</h2>
+                <p>Click "View Recipe" to make it!</p>
+                <button class="view-recipe-btn" data-recipe="Cup Cookies">View Recipe</button>
+            </div>
+            <div class="recipe-card">
+                <img src="wow.jfif" alt="Chocolate Chip Cookie">
+                <h2>Chocolate Chip Cookie</h2>
+                <p>Click "View Recipe" to make it!</p>
+                <button class="view-recipe-btn" data-recipe="Chocolate Chip Cookie">View Recipe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popup -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Recipe Title</h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <p>&copy; 2024 Delicious Recipes By Omar Tayeb and some help from Khalid alketbi :)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("recipeModal");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const viewRecipeBtns = document.querySelectorAll(".view-recipe-btn");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalContent = document.getElementById("modalContent");
+
+        viewRecipeBtns.forEach(button => {
+            button.addEventListener("click", function() {
+                const recipe = button.getAttribute("data-recipe");
+
+                // Set modal content based on recipe
+                modalTitle.textContent = recipe;
+
+                if (recipe === "Brownie Cookies") {
+                    modalContent.innerHTML = `
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <li>100g dark chocolate</li>
+                            <li>100g unsalted butter</li>
+                            <li>2 medium eggs</li>
+                            <li>140g caster sugar</li>
+                            <li>50g plain flour</li>
+                            <li>25g cocoa powder</li>
+                            <li>100g Kinder chocolate</li>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <p>1. Mix the ingredients and bake at 180°C for 25 minutes.</p>
+                    `;
+                } else if (recipe === "Brookies") {
+                    modalContent.innerHTML = `
+                        <h3>Ingredients for Brownie Batter:</h3>
+                        <ul>
+                            <li>100g dark chocolate</li>
+                            <li>100g unsalted butter</li>
+                            <li>2 medium eggs</li>
+                            <li>140g caster sugar</li>
+                            <li>50g plain flour</li>
+                            <li>25g cocoa powder</li>
+                            <li>100g Kinder chocolate</li>
+                        </ul>
+                        <h3>Ingredients for Cookie Dough:</h3>
+                        <ul>
+                            <li>115g unsalted butter</li>
+                            <li>125g light brown sugar</li>
+                            <li>1 medium egg</li>
+                            <li>1/2 tsp vanilla extract</li>
+                            <li>225g plain flour</li>
+                            <li>1/2 tsp bicarbonate of soda</li>
+                            <li>1/2 tsp salt</li>
+                            <li>1 tsp cornflour</li>
+                            <li>80g dark chocolate chips</li>
+                            <li>5 crushed Oreos</li>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <p>1. Prepare brownie batter and cookie dough. Layer them in a baking pan and bake at 180°C for 20-25 minutes.</p>
+                    `;
+                } else if (recipe === "Cup Cookies") {
+                    modalContent.innerHTML = `
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <li>115g unsalted butter (softened)</li>
+                            <li>50g white sugar</li>
+                            <li>100g brown sugar</li>
+                            <li>1 egg</li>
+                            <li>2 drops of vanilla</li>
+                            <li>190g flour</li>
+                            <li>1/2 tsp salt</li>
+                            <li>3/4 tsp baking soda</li>
+                            <li>Chocolate chips</li>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <p>1. Mix all ingredients and form into balls. Bake at 180°C for 10 minutes.</p>
+                    `;
+                } else if (recipe === "Chocolate Chip Cookie") {
+                    modalContent.innerHTML = `
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <li>115g unsalted butter (softened)</li>
+                            <li>50g white sugar</li>
+                            <li>100g brown sugar</li>
+                            <li>1 egg</li>
+                            <li>2 drops of vanilla</li>
+                            <li>190g flour</li>
+                            <li>1/2 tsp salt</li>
+                            <li>3/4 tsp baking soda</li>
+                            <li>Chocolate chips</li>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <p>1. Mix ingredients and bake at 180°C for 10 minutes.</p>
+                    `;
+                }
+
+                // Show the modal with fade-in animation
+                modal.style.display = "flex";
+                modal.classList.add('fade-in');
+            });
+        });
+
+        // Close the modal when clicking on the close button
+        closeBtn.onclick = function() {
+            modal.classList.remove('fade-in');
+            modal.style.display = "none";
+        };
+
+        // Close the modal if the user clicks outside of the modal content
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.classList.remove('fade-in');
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
